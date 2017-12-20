@@ -1,4 +1,5 @@
 import jsonp from 'common/js/jsonp'
+import axios from 'axios'
 import { commonParams, options } from './config';
 
 const getRecommend = () => {
@@ -13,10 +14,9 @@ const getRecommend = () => {
 }
 
 const getDiscList = () => {
-    const url = 'https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg'
+    const url = '/api/getDiscList'
 
     const data = Object.assign({},commonParams,{
-        pcimid:1,
         platform:'yqq',
         hostUin:0,
         sin:0,
@@ -27,7 +27,11 @@ const getDiscList = () => {
         rnd:Math.random()
     })
 
-    return jsonp(url,data,options)
+    return axios.get(url,{
+        params:data
+    }).then((res) => {
+        return Promise.resolve(res.data)
+    })
 
 }
 
