@@ -5,7 +5,7 @@
         <div v-if="recommends.length" class="slider-wrapper">
           <slider>
             <a :href="item.linkUrl" v-for="item in recommends" :key="item.linkUrl">        
-              <img class="needsclick" @load="laodImage" :src="item.picUrl" alt="">            
+              <img class="needsclick" @load="loadImage" :src="item.picUrl" alt="">            
             </a>
           </slider>
         </div>
@@ -65,7 +65,7 @@ export default {
         }
       })
     },
-    laodImage() {
+    loadImage() {
       if(!this.checkLoaded) {
         this.checkLoaded = true
         this.$refs.scroll.refresh()
